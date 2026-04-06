@@ -242,6 +242,368 @@ async def init_db():
         
         await db.commit()
 
+# ==================== 50 TA YANGI MATEMATIKA SAVOLLARI ====================
+# Bu yangi savollar to'plami - avvalgisidan butunlay boshqacha
+
+async def add_new_questions_pack():
+    """Yangi 50 ta savolni qo'shish"""
+    
+    questions = [
+        # ==================== OSON SAVOLLAR (1-17) ====================
+        {
+            'question': '9 + 6 = ?',
+            'a': '13', 'b': '14', 'c': '15', 'd': '16',
+            'correct': 'C',
+            'explanation': '9 + 6 = 15'
+        },
+        {
+            'question': '20 - 13 = ?',
+            'a': '5', 'b': '6', 'c': '7', 'd': '8',
+            'correct': 'C',
+            'explanation': '20 - 13 = 7'
+        },
+        {
+            'question': '7 × 9 = ?',
+            'a': '56', 'b': '63', 'c': '70', 'd': '72',
+            'correct': 'B',
+            'explanation': '7 × 9 = 63'
+        },
+        {
+            'question': '48 ÷ 8 = ?',
+            'a': '4', 'b': '5', 'c': '6', 'd': '7',
+            'correct': 'C',
+            'explanation': '48 ÷ 8 = 6'
+        },
+        {
+            'question': '5² = ?',
+            'a': '10', 'b': '15', 'c': '20', 'd': '25',
+            'correct': 'D',
+            'explanation': '5² = 5 × 5 = 25'
+        },
+        {
+            'question': '√49 = ?',
+            'a': '6', 'b': '7', 'c': '8', 'd': '9',
+            'correct': 'B',
+            'explanation': '√49 = 7, chunki 7 × 7 = 49'
+        },
+        {
+            'question': '20% dan 150 = ?',
+            'a': '20', 'b': '25', 'c': '30', 'd': '35',
+            'correct': 'C',
+            'explanation': '20% × 150 = 0.2 × 150 = 30'
+        },
+        {
+            'question': '1/3 + 1/6 = ?',
+            'a': '1/3', 'b': '1/2', 'c': '2/3', 'd': '5/6',
+            'correct': 'B',
+            'explanation': '1/3 + 1/6 = 2/6 + 1/6 = 3/6 = 1/2'
+        },
+        {
+            'question': '3 × (5 + 2) = ?',
+            'a': '17', 'b': '19', 'c': '21', 'd': '23',
+            'correct': 'C',
+            'explanation': '3 × (5 + 2) = 3 × 7 = 21'
+        },
+        {
+            'question': '30 - 6 × 3 = ?',
+            'a': '12', 'b': '18', 'c': '24', 'd': '72',
+            'correct': 'A',
+            'explanation': '30 - 6 × 3 = 30 - 18 = 12'
+        },
+        {
+            'question': '|-12| = ?',
+            'a': '-12', 'b': '0', 'c': '12', 'd': '24',
+            'correct': 'C',
+            'explanation': 'Modul har doim musbat: |-12| = 12'
+        },
+        {
+            'question': 'To\'rtburchakning burchaklari yig\'indisi necha gradus?',
+            'a': '180°', 'b': '270°', 'c': '360°', 'd': '450°',
+            'correct': 'C',
+            'explanation': 'To\'rtburchak burchaklari yig\'indisi 360°'
+        },
+        {
+            'question': '8 × 1 = ?',
+            'a': '0', 'b': '1', 'c': '8', 'd': 'Aniqlanmagan',
+            'correct': 'C',
+            'explanation': 'Har qanday son × 1 = o\'sha son'
+        },
+        {
+            'question': '144 ÷ 12 = ?',
+            'a': '10', 'b': '11', 'c': '12', 'd': '13',
+            'correct': 'C',
+            'explanation': '144 ÷ 12 = 12'
+        },
+        {
+            'question': '9 × 6 = ?',
+            'a': '45', 'b': '48', 'c': '54', 'd': '63',
+            'correct': 'C',
+            'explanation': '9 × 6 = 54'
+        },
+        {
+            'question': '1 soat necha minut?',
+            'a': '30', 'b': '45', 'c': '60', 'd': '100',
+            'correct': 'C',
+            'explanation': '1 soat = 60 minut'
+        },
+        {
+            'question': '3/10 ning o\'nlik kasri?',
+            'a': '0.03', 'b': '0.3', 'c': '3.0', 'd': '3.10',
+            'correct': 'B',
+            'explanation': '3 ÷ 10 = 0.3'
+        },
+        
+        # ==================== O'RTACHA SAVOLLAR (18-33) ====================
+        {
+            'question': 'x + 8 = 15 bo\'lsa, x = ?', 
+            'a': '5', 'b': '7', 'c': '8', 'd': '23',
+            'correct': 'B',
+            'explanation': 'x = 15 - 8 = 7'
+        },
+        {
+            'question': '3x = 27 bo\'lsa, x = ?',
+            'a': '6', 'b': '7', 'c': '9', 'd': '81',
+            'correct': 'C',
+            'explanation': 'x = 27 ÷ 3 = 9'
+        },
+        {
+            'question': 'x² = 36 bo\'lsa, x ning musbat qiymati?',
+            'a': '4', 'b': '6', 'c': '9', 'd': '18',
+            'correct': 'B',
+            'explanation': '√36 = 6'
+        },
+        {
+            'question': '2x + 5 = 13 bo\'lsa, x = ?',
+            'a': '3', 'b': '4', 'c': '5', 'd': '6',
+            'correct': 'B',
+            'explanation': '2x = 8, x = 4'
+        },
+        {
+            'question': 'Doira diametri 8 bo\'lsa, radiusi = ?',
+            'a': '2', 'b': '4', 'c': '8', 'd': '16',
+            'correct': 'B',
+            'explanation': 'Radius = Diametr ÷ 2 = 8 ÷ 2 = 4'
+        },
+        {
+            'question': '√81 - √9 = ?',
+            'a': '3', 'b': '6', 'c': '9', 'd': '12',
+            'correct': 'B',
+            'explanation': '9 - 3 = 6'
+        },
+        {
+            'question': '3⁴ = ?',
+            'a': '12', 'b': '27', 'c': '64', 'd': '81',
+            'correct': 'D',
+            'explanation': '3⁴ = 3 × 3 × 3 × 3 = 81'
+        },
+        {
+            'question': '(x + 5)(x - 5) = ?',
+            'a': 'x² - 25', 'b': 'x² + 25', 'c': 'x² - 10', 'd': '10x',
+            'correct': 'A',
+            'explanation': 'Kvadratlar ayirmasi formulasi'
+        },
+        {
+            'question': 'cos 90° = ?',
+            'a': '-1', 'b': '0', 'c': '0.5', 'd': '1',
+            'correct': 'B',
+            'explanation': 'cos 90° = 0'
+        },
+        {
+            'question': '15% dan 60 = ?',
+            'a': '6', 'b': '9', 'c': '12', 'd': '15',
+            'correct': 'B',
+            'explanation': '0.15 × 60 = 9'
+        },
+        {
+            'question': '|5 - 12| = ?',
+            'a': '-17', 'b': '-7', 'c': '7', 'd': '17',
+            'correct': 'C',
+            'explanation': '|-7| = 7'
+        },
+        {
+            'question': 'Kvadrat tomoni 6. Yuzi = ?',
+            'a': '24', 'b': '30', 'c': '36', 'd': '42',
+            'correct': 'C',
+            'explanation': 'S = a² = 6² = 36'
+        },
+        {
+            'question': '4! = ?',
+            'a': '16', 'b': '20', 'c': '24', 'd': '32',
+            'correct': 'C',
+            'explanation': '4! = 4 × 3 × 2 × 1 = 24'
+        },
+        {
+            'question': 'log₁₀ 1000 = ?',
+            'a': '2', 'b': '3', 'c': '4', 'd': '10',
+            'correct': 'B',
+            'explanation': '10³ = 1000, shuning uchun log₁₀ 1000 = 3'
+        },
+        {
+            'question': '√(25 + 144) = ?',
+            'a': '11', 'b': '12', 'c': '13', 'd': '14',
+            'correct': 'C',
+            'explanation': '√169 = 13'
+        },
+        {
+            'question': '4x - 2x = 10 bo\'lsa, x = ?',
+            'a': '3', 'b': '4', 'c': '5', 'd': '6',
+            'correct': 'C',
+            'explanation': '2x = 10, x = 5'
+        },
+        
+        # ==================== QIYIN SAVOLLAR (34-50) ====================
+        {
+            'question': 'x² - 7x + 12 = 0. x ning ildizlari ko\'paytmasi?',
+            'a': '7', 'b': '10', 'c': '12', 'd': '19',
+            'correct': 'C',
+            'explanation': 'Viyet teoremasi: x₁ × x₂ = 12'
+        },
+        {
+            'question': 'd/dx (x³) = ?',
+            'a': 'x²', 'b': '3x', 'c': '3x²', 'd': 'x³',
+            'correct': 'C',
+            'explanation': 'Hosila: (x³)\' = 3x²'
+        },
+        {
+            'question': 'lim(x→∞) (1/x) = ?',
+            'a': '-∞', 'b': '0', 'c': '1', 'd': '∞',
+            'correct': 'B',
+            'explanation': 'x cheksizlikka intilganda, 1/x nolga intiladi'
+        },
+        {
+            'question': '2⁸ = ?',
+            'a': '128', 'b': '256', 'c': '512', 'd': '1024',
+            'correct': 'B',
+            'explanation': '2⁸ = 256'
+        },
+        {
+            'question': 'ln(e²) = ?',
+            'a': '1', 'b': '2', 'c': 'e', 'd': 'e²',
+            'correct': 'B',
+            'explanation': 'ln(e²) = 2 × ln(e) = 2 × 1 = 2'
+        },
+        {
+            'question': 'i³ = ? (i - mavhum birlik)',
+            'a': '-i', 'b': '-1', 'c': '1', 'd': 'i',
+            'correct': 'A',
+            'explanation': 'i³ = i² × i = -1 × i = -i'
+        },
+        {
+            'question': '∑(n=1 to 10) 1 = ?',
+            'a': '1', 'b': '5', 'c': '10', 'd': '55',
+            'correct': 'C',
+            'explanation': '1 ni 10 marta qo\'shsak = 10'
+        },
+        {
+            'question': 'sin 30° = ?',
+            'a': '0', 'b': '0.5', 'c': '√3/2', 'd': '1',
+            'correct': 'B',
+            'explanation': 'sin 30° = 1/2 = 0.5'
+        },
+        {
+            'question': 'Determinant |1 2; 3 4| = ?',
+            'a': '-2', 'b': '0', 'c': '2', 'd': '10',
+            'correct': 'A',
+            'explanation': '1×4 - 2×3 = 4 - 6 = -2'
+        },
+        {
+            'question': 'log₂ 64 = ?',
+            'a': '4', 'b': '5', 'c': '6', 'd': '7',
+            'correct': 'C',
+            'explanation': '2⁶ = 64'
+        },
+        {
+            'question': 'Geometrik progressiya: 2,6,18,... Keyingi had?',
+            'a': '36', 'b': '48', 'c': '54', 'd': '72',
+            'correct': 'C',
+            'explanation': 'Maxraj 3, shuning uchun 18 × 3 = 54'
+        },
+        {
+            'question': 'P(5,3) = ? (O\'rin almashtirish)',
+            'a': '10', 'b': '20', 'c': '60', 'd': '120',
+            'correct': 'C',
+            'explanation': 'P(5,3) = 5!/(5-3)! = 5×4×3 = 60'
+        },
+        {
+            'question': 'tan 60° = ?',
+            'a': '1', 'b': '√2', 'c': '√3', 'd': '2',
+            'correct': 'C',
+            'explanation': 'tan 60° = √3'
+        },
+        {
+            'question': '|x + 3| < 5. x ning oralig\'i?',
+            'a': '(-8, 2)', 'b': '(-5, 5)', 'c': '(-3, 5)', 'd': '(0, 5)',
+            'correct': 'A',
+            'explanation': '-8 < x < 2'
+        },
+        {
+            'question': 'f(x) = x² - 3. f(4) = ?',
+            'a': '11', 'b': '13', 'c': '15', 'd': '19',
+            'correct': 'B',
+            'explanation': 'f(4) = 4² - 3 = 16 - 3 = 13'
+        },
+        {
+            'question': '∛64 = ?',
+            'a': '2', 'b': '4', 'c': '8', 'd': '16',
+            'correct': 'B',
+            'explanation': '4³ = 64'
+        },
+        {
+            'question': '1/3 × 1/4 = ?',
+            'a': '1/7', 'b': '1/12', 'c': '3/4', 'd': '4/3',
+            'correct': 'B',
+            'explanation': '1/3 × 1/4 = 1/12'
+        }
+    ]
+    
+    # Bazaga qo'shish
+    added_count = 0
+    
+    for q in questions:
+        try:
+            await add_question(
+                q['question'],
+                q['a'], q['b'], q['c'], q['d'],
+                q['correct'],
+                q['explanation']
+            )
+            added_count += 1
+            print(f"✅ Qo'shildi: {q['question'][:50]}...")
+        except Exception as e:
+            print(f"❌ Xato: {q['question'][:50]}... - {e}")
+    
+    print(f"\n✅ Jami {added_count} ta yangi savol qo'shildi!")
+    return added_count
+
+
+# ==================== YANGI SAVOLLARNI QO'SHISH BUYRUG'I ====================
+
+@bot.message_handler(commands=['addnewquestions'])
+async def add_new_questions_command(message):
+    """Yangi 50 ta savolni qo'shish (faqat admin)"""
+    if message.from_user.id != ADMIN_ID:
+        await bot.reply_to(message, "❌ Bu buyruq faqat admin uchun!")
+        return
+    
+    await bot.send_message(
+        message.chat.id,
+        "⏳ Yangi 50 ta savol bazaga qo'shilmoqda...\n"
+        "Bu bir necha soniya davom etadi..."
+    )
+    
+    # Savollarni qo'shish
+    count = await add_new_questions_pack()
+    
+    # Jami savollar sonini tekshirish
+    total = await get_questions_count()
+    
+    await bot.send_message(
+        message.chat.id,
+        f"✅ {count} ta yangi savol muvaffaqiyatli qo'shildi!\n\n"
+        f"📊 Bazada jami: {total} ta savol\n\n"
+        f"💡 Yangi savollar bilan quizlarni boshlang!"
+    )
+
 # ==================== DATABASE - MAVSUM JADVALI ====================
 # init_db funksiyasiga qo'shing (CREATE TABLE qismida)
 
@@ -8040,6 +8402,7 @@ def main():
     print("🤖 Bot ishga tushmoqda...")
     asyncio.run(init_db())
     asyncio.run(init_referral_table())
+    asyncio.run(add_questions_pack())
     asyncio.run(init_season_table()) 
     asyncio.run(init_learning_table()) 
     asyncio.run(init_levels_table())
